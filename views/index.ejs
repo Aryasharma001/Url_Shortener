@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <h1>URL Shortener</h1>
+
+  <form id="urlForm">
+    <label for="url">Enter URL:</label>
+    <input type="url" id="url" name="url" required>
+    <button type="submit">Shorten URL</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('urlForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const urlInput = document.getElementById('url');
+      const resultDiv = document.getElementById('result');
+
+      try {
+        const response = await fetch('http://localhost:3000/url', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ url: urlInput.value }),
+        });
+
+        console.log(response);
+        const data = await response.json();
+        console.log(data)
+
+        if (response.ok) {
+          resultDiv.innerHTML = `Shortened URL: <a href="http://localhost:3000/${data.id}" target="_blank">${data.id}</a>`;
+        } else {
+          resultDiv.innerHTML = `Error: ${data.error}`;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        resultDiv.innerHTML = 'An error occurred.';
+      }
+    });
+  </script>
+
+</body>
+
+<%- include('partials/footer'); -%>
+
+</html>
