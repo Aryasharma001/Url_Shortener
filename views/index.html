@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>URL Shortener</title>
-  <!-- <link href="style.css" rel="stylesheet"> -->
-  <style>
+  <link href="./style.css" rel="stylesheet">
+  <!-- <style>
     body {
       background-color: #282c34;
       color: #61dafb;
@@ -74,7 +74,7 @@
 
   </style>  
    
-  
+   -->
 
 </head>
 <body>
@@ -112,8 +112,10 @@
         const data = await response.json();
 
         if (response.ok) {
+          resultDiv.classList.add('active')
           resultDiv.innerHTML = `Shortened URL: <a href="http://localhost:3000/${data.id}" target="_blank">${data.id}</a>`;
         } else {
+          resultDiv.classList.add('active')
           resultDiv.innerHTML = `Error: ${data.error}`;
         }
       } catch (error) {
