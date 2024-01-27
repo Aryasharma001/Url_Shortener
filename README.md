@@ -26,7 +26,7 @@ URL Shortener is a simple web application that allows users to create short and 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/url-shortener.git
+git clone https://github.com/Aryasharma001/url-shortener.git
 ```
 
 ### 2. Install Dependencies
